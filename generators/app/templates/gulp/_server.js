@@ -39,16 +39,23 @@ function browserSyncInit(baseDir, browser) {
    */
   // server.middleware = proxyMiddleware('/users', {target: 'http://jsonplaceholder.typicode.com', changeOrigin: true});
 
-  browserSync.instance = browserSync.init({
+  var options = {
     startPath: '/',
     server: server,
     browser: browser
+  };
+
+  if( conf.port !== undefined )
+    options.port = conf.port;
+
+  browserSync.instance = browserSync.init(
+    options
 <% if(qrCode) { -%>
-  }, function(err, bs) {
+  , function(err, bs) {
     qrcode.generate(bs.options.get('urls').get('external'));
   });
 <% } else { -%>
-  });
+  );
 <% } -%>
 }
 
