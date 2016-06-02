@@ -41,3 +41,5 @@ exports.errorHandler = function(title) {
     this.emit('end');
   };
 };
+
+exports.port = process.env.PORT;
